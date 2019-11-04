@@ -15,10 +15,10 @@ class Container extends Component {
         const { title } = this.state;
         return (
             <div className="container">
-                <ReactComponent title = {this.state.title}/>
-                <CreateElement title = {this.state.title}/>
-                <PureComponent title = {this.state.title}/>
-                <FunctionalComponent title = {this.state.title}/>
+                <ReactComponent title = {title}/>
+                <CreateElement title = {title}/>
+                <PureComponent title = {title}/>
+                <FunctionalComponent title = {title}/>
             </div>
         )
     }
