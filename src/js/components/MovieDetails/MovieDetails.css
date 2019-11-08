@@ -1,0 +1,40 @@
+.numberCircle {
+    font: 32px Arial, sans-serif;
+    margin-left: 0.3em;
+    width: 1.7em;
+    height: 1.7em;
+    box-sizing: initial;
+
+    background: #e9ecef;
+    border: 0.05em solid #ffffff;
+    color: #A1E66F;
+    text-align: center;
+    border-radius: 50%;
+
+    line-height: 1.7em;
+    box-sizing: content-box;
+}
+
+.movieDate, .moveRuntime {
+    color: #F65261;
+}
+
+.moveRuntime {
+    margin-left: 0.3em;
+}
+.titleBox, .timeBox {
+    white-space:nowrap;
+}
+
+.timeBox {
+    margin-bottom: 12px;
+}
+
+.titleBox .boxElement,
+.timeBox .boxElement{
+    display:inline-block;
+}
+
+.timeBox .boxElementLeft{
+    margin-left: 0.3em;
+}

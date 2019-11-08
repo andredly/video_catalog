@@ -1,8 +1,11 @@
 import React, {Component} from "react";
-import ReactComponent from "../components/Component";
-import CreateElement from "../components/CreateElement";
-import PureComponent from "../components/PureComponent";
-import FunctionalComponent from "../components/FunctionalComponent";
+import 'bootstrap/dist/css/bootstrap.css';
+import Header from "../components/Header";
+import SearchContainer from "./SearchContainer";
+import ResultPanel from "../components/ResultPanel";
+import ResultsBody from "./ResultsBody";
+import Footer from "../components/Footer";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 class Container extends Component {
     constructor(props) {
@@ -11,15 +14,21 @@ class Container extends Component {
             title: "Hello world"
         };
     }
+
     render() {
-        const { title } = this.state;
+        const {title} = this.state;
         return (
-            <div className="container">
-                <ReactComponent title = {title}/>
-                <CreateElement title = {title}/>
-                <PureComponent title = {title}/>
-                <FunctionalComponent title = {title}/>
-            </div>
+            <ErrorBoundary>
+                <React.Fragment>
+                    <Header/>
+                    <main role="main">
+                        <SearchContainer/>
+                        <ResultPanel/>
+                        <ResultsBody/>
+                        <Footer/>
+                    </main>
+                </React.Fragment>
+            </ErrorBoundary>
         )
     }
 }
