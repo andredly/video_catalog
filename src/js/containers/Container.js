@@ -1,25 +1,28 @@
 import React, {Component} from "react";
-import ReactComponent from "../components/Component";
-import CreateElement from "../components/CreateElement";
-import PureComponent from "../components/PureComponent";
-import FunctionalComponent from "../components/FunctionalComponent";
+import 'bootstrap/dist/css/bootstrap.css';
+import Header from "../components/Header";
+import SearchContainer from "./SearchContainer";
+import ResultPanel from "./ResultPanel";
+import ResultsBody from "../components/ResultBody/ResultsBody";
+import Footer from "../components/Footer";
 
 class Container extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            title: "Hello world"
-        };
+        this.state = {};
     }
+
     render() {
-        const { title } = this.state;
         return (
-            <div className="container">
-                <ReactComponent title = {title}/>
-                <CreateElement title = {title}/>
-                <PureComponent title = {title}/>
-                <FunctionalComponent title = {title}/>
-            </div>
+            <React.Fragment>
+                <Header/>
+                <main role="main">
+                    <SearchContainer/>
+                    <ResultPanel/>
+                    <ResultsBody/>
+                </main>
+                <Footer/>
+            </React.Fragment>
         )
     }
 }
