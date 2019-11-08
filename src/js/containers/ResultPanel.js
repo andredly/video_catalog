@@ -1,6 +1,6 @@
 import React from "react";
-import SearchFilter from "./SearchFilter/SearchFilter";
-import ResultCount from "./ResultCount";
+import SearchFilter from "../components/SearchFilter/SearchFilter";
+import ResultCount from "../components/ResultCount";
 
 function ResultPanel() {
 

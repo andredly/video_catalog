@@ -1,7 +1,6 @@
 import React from "react";
 import SearchFilter from "../components/SearchFilter/SearchFilter";
 import SearchInput from "../components/SearchInput";
-import ResultPanel from "../components/ResultPanel";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
 
 function SearchContainer() {

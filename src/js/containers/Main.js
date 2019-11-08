@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import ErrorBoundary from "../components/ErrorBoundary";
+import ErrorBoundary from "./error/ErrorBoundary";
 import Container from "./Container";
 
 class Main extends Component {
