@@ -1,5 +1,4 @@
 import React from "react";
-import SearchFilter from "../SearchFilter/SearchFilter";
 import "./MovieDetails.css"
 
 function MovieDetails() {
@@ -28,7 +27,6 @@ function MovieDetails() {
                             <p className="card-text">When the creator of a popular video game system dies, a
                                 virtual
                                 contest is created to compete for his fortune.</p>
-
                         </div>
                     </div>
                 </div>
