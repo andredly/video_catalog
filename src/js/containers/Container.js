@@ -5,12 +5,9 @@ import SearchContainer from "./SearchContainer";
 import ResultPanel from "./ResultPanel";
 import ResultsBody from "../components/ResultBody/ResultsBody";
 import Footer from "../components/Footer";
+import MovieDetails from "../components/MovieDetails/MovieDetails";
 
 class Container extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
 
     render() {
         return (
