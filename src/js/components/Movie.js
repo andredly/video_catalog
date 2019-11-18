@@ -1,5 +1,5 @@
-import React, { Component }  from "react";
-import {loadMovieDetails, loadMovies} from "../store/actions";
+import React, {Component} from "react";
+import {loadMovieDetails} from "../store/fetchData/actions";
 import {connect} from "react-redux";
 
 

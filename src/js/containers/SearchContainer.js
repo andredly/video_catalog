@@ -4,23 +4,25 @@ import SearchInput from "../components/SearchInput";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
 import {setOptionSearch, setSearchText} from "../store/search/actions";
 import {connect} from "react-redux";
-import {loadMovies} from "../store/actions";
+import {loadMovies} from "../store/fetchData/actions";
 
 function SearchContainer(props) {
 
     return (
         <div className="jumbotron mb-0 text-left">
             <div className="container">
-                <MovieDetails
-                    title={props.movieDetails.title}
-                    tagline={props.movieDetails.tagline}
-                    voteAverage={props.movieDetails.vote_average}
-                    voteCount={props.movieDetails.vote_count}
-                    releaseDate={props.movieDetails.release_date}
-                    posterPath={props.movieDetails.poster_path}
-                    overview={props.movieDetails.overview}
-                    genres={props.movieDetails.genres}
-                    runtime={props.movieDetails.runtime}/>
+                { Object.keys(props.movieDetails).length > 0 &&
+                    <MovieDetails
+                        title={props.movieDetails.title}
+                        tagline={props.movieDetails.tagline}
+                        voteAverage={props.movieDetails.vote_average}
+                        voteCount={props.movieDetails.vote_count}
+                        releaseDate={props.movieDetails.release_date}
+                        posterPath={props.movieDetails.poster_path}
+                        overview={props.movieDetails.overview}
+                        genres={props.movieDetails.genres}
+                        runtime={props.movieDetails.runtime}/>
+                }
                 <SearchInput
                     searchParams={props.searchParams}
                     setSearchText={props.setSearchText}
@@ -39,7 +41,11 @@ function SearchContainer(props) {
 
 const mapStateToProps = (state) => {
     return {
-        searchParams : state.resultOptionReducer.searchParams,
+        searchParams : {
+            search : state.resultOptionReducer.search,
+            searchBy : state.resultOptionReducer.searchBy,
+            sortBy : state.resultOptionReducer.sortBy
+        },
         movieDetails: state.moviesReducer.movieDetails
     }
 };

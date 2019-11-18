@@ -3,7 +3,7 @@ import SearchFilter from "../components/SearchFilter/SearchFilter";
 import ResultCount from "../components/ResultCount";
 import {setOptionSort} from "../store/search/actions";
 import {connect} from "react-redux";
-import {loadMovies} from "../store/actions";
+import {loadMovies} from "../store/fetchData/actions";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
 
 function ResultPanel(props) {
@@ -34,7 +34,11 @@ function ResultPanel(props) {
 
 const mapStateToProps = (state) => {
     return {
-        searchParams : state.resultOptionReducer.searchParams,
+        searchParams : {
+            search : state.resultOptionReducer.search,
+            searchBy : state.resultOptionReducer.searchBy,
+            sortBy : state.resultOptionReducer.sortBy
+        },
         movies : state.moviesReducer.movies
     }
 };

@@ -10,7 +10,6 @@ function MovieDetails(props) {
             <div className="card-body d-flex flex-column align-items-start">
                 <div className="row">
                     <div className="col-md-4">
-                        {console.log(props)}
                         <img src={props.posterPath} className="card-img"
                              alt={props.title}/>
                     </div>

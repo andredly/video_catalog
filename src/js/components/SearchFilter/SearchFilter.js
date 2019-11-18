@@ -17,7 +17,6 @@ class SearchFilter extends Component{
     }
 
     render() {
-        // const status = this.props.status;
         return (
             <div className="container">
                 <label className="btn text-dark my-2 pl-0">{this.props.typeText}</label>

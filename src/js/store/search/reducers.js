@@ -1,11 +1,9 @@
 import {CHANGE_OPTION_SEARCH_BY, CHANGE_OPTION_SORT_BY, GET_SEARCH_TEXT} from "./actions";
 
 const defaultState = {
-    searchParams: {
-        search: "",
-        searchBy: "title",
-        sortBy: "release_data"
-    }
+    search: "",
+    searchBy: "title",
+    sortBy: "release_data"
 };
 
 export const resultOptionReducer = (state = defaultState, action) => {
@@ -13,29 +11,17 @@ export const resultOptionReducer = (state = defaultState, action) => {
         case CHANGE_OPTION_SEARCH_BY :
             return {
                 ...state,
-                searchParams: {
-                    search : state.searchParams.search,
-                    searchBy : action.searchBy,
-                    sortBy : state.searchParams.sortBy
-                }
+                searchBy: action.searchBy
             };
         case CHANGE_OPTION_SORT_BY :
             return {
                 ...state,
-                searchParams: {
-                    search : state.searchParams.search,
-                    searchBy : state.searchParams.searchBy,
-                    sortBy : action.sortBy
-                }
+                sortBy: state.sortBy
             };
         case GET_SEARCH_TEXT :
             return {
                 ...state,
-                searchParams: {
-                    search : action.searchText,
-                    searchBy : state.searchParams.searchBy,
-                    sortBy : state.searchParams.sortBy
-                }
+                search: action.searchText
             }
     }
     return state;
