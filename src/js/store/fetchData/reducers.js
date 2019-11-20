@@ -1,13 +1,20 @@
-import {ADD_MOVIES_TO_STATE, CHANGE_MOVIE_COUNT, GET_MOVIE_DETAILS, GET_MOVIES_LIST} from "./actions";
+import {
+    ADD_MOVIES_TO_STATE,
+    FETCH_MOVIES_ERROR,
+    FETCH_MOVIES_PENDING,
+    GET_MOVIE_DETAILS,
+    GET_MOVIES_LIST
+} from "./actions";
 
 
 const defaultState = {
+    pending: false,
+    error: null,
     movies : [],
     movieDetails : {},
     limit: 20,
     offset: 0,
-    total: 0,
-    count : 0
+    total: 0
 };
 
 export const moviesReducer = (state = defaultState, action) => {
@@ -16,26 +23,32 @@ export const moviesReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 movies : action.movies.data,
-                total : action.movies.total,
-                offset : action.movies.offset
+                offset : action.movies.offset,
+                pending: false
             };
         case GET_MOVIE_DETAILS :
             return {
                 ...state,
                 movieDetails : action.movieDetails,
-            };
-        case CHANGE_MOVIE_COUNT :
-            return {
-                ...state,
-                count : action.count,
+                pending: false
             };
         case ADD_MOVIES_TO_STATE :
-            console.log(state.movies)
-            console.log(action.movies)
             return {
                 ...state,
                 movies : state.movies.concat(action.movies.data),
-                offset : state.offset + action.movies.offset
+                offset : action.movies.offset,
+                pending: false,
+            };
+        case FETCH_MOVIES_PENDING:
+            return {
+                ...state,
+                pending: true
+            };
+        case FETCH_MOVIES_ERROR:
+            return {
+                ...state,
+                pending: false,
+                error: action.error
             }
     }
     return state;

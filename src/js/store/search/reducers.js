@@ -16,7 +16,7 @@ export const resultOptionReducer = (state = defaultState, action) => {
         case CHANGE_OPTION_SORT_BY :
             return {
                 ...state,
-                sortBy: state.sortBy
+                sortBy: action.sortBy
             };
         case GET_SEARCH_TEXT :
             return {

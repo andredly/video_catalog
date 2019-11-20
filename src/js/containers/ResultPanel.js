@@ -4,7 +4,6 @@ import ResultCount from "../components/ResultCount";
 import {setOptionSort} from "../store/search/actions";
 import {connect} from "react-redux";
 import {loadMovies} from "../store/fetchData/actions";
-import MovieDetails from "../components/MovieDetails/MovieDetails";
 
 function ResultPanel(props) {
 

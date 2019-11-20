@@ -5,6 +5,7 @@ import {loadMoreMovies, loadMovies} from "../../store/fetchData/actions";
 import {connect} from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {NoFilmsFound} from "../NoFilmsFound";
+import {Loader} from "../Loader";
 
 class ResultsBody extends Component {
 
@@ -23,16 +24,22 @@ class ResultsBody extends Component {
         this.props.addMovieToState(this.props.searchParams);
     }
 
+    shouldComponentRender() {
+        return this.props.pending !== false;
+    }
+
     render() {
         const hasContent = this.props.movies.length > 0;
+        if (!this.shouldComponentRender()) return <Loader load={true}/>;
         return (
             <div className="album py-5 jumbotron mb-0">
-                <div className="container">
-                    {hasContent ? (
-                        <InfiniteScroll dataLength={this.props.movies.length}
-                                        next={this.fetchNextMovies}
-                                        hasMore={true}
-                                        loader={<h4>Loading...</h4>}>
+                {this.props.error && <div className='text-body'>{this.props.error}</div>}
+                {hasContent ? (
+                    <InfiniteScroll dataLength={this.props.movies.length}
+                                    next={this.fetchNextMovies}
+                                    hasMore={true}
+                                    loader={<Loader load={this.props.pending}/>}>
+                        <div className="container">
                             <div className="row">
                                 {this.props.movies.map((movie) =>
                                     <Movie
@@ -45,11 +52,12 @@ class ResultsBody extends Component {
                                     />
                                 )}
                             </div>
-                        </InfiniteScroll>
-                    ) : (
-                        <NoFilmsFound/>
-                    )}
-                </div>
+
+                        </div>
+                    </InfiniteScroll>
+                ) : (
+                    <NoFilmsFound/>
+                )}
             </div>
         )
     }
@@ -66,7 +74,8 @@ const mapStateToProps = (state) => {
             limit: state.moviesReducer.limit,
             offset: state.moviesReducer.offset
         },
-        count: state.resultOptionReducer.count,
+        pending: state.resultOptionReducer.pending,
+        error: state.resultOptionReducer.error
 
     }
 };
