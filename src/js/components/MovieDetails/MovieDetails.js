@@ -7,7 +7,7 @@ function MovieDetails(props) {
 
     return (
         <div className="card flex-md-row mb-4 shadow-sm h-md-250">
-            {error && <span className='product-list-error'>{error}</span>}
+            {/*{error && <span className='product-list-error'>{error}</span>}*/}
             <div className="card-body d-flex flex-column align-items-start">
                 <div className="row">
                     <div className="col-md-4">
