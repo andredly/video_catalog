@@ -8,13 +8,13 @@ export const ADD_MOVIES_TO_STATE = "ADD_MOVIES_TO_STATE";
 export const FETCH_MOVIES_PENDING = 'FETCH_MOVIES_PENDING';
 export const FETCH_MOVIES_ERROR = 'FETCH_MOVIES_ERROR';
 
-function fetchMoviesPending() {
+export function fetchMoviesPending() {
     return {
         type: FETCH_MOVIES_PENDING
     }
 }
 
-function fetchMoviesError(products) {
+export function fetchMoviesError(products) {
     return {
         type: FETCH_MOVIES_ERROR,
         products: products
