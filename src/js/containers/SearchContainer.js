@@ -9,7 +9,7 @@ import {loadMovies} from "../store/fetchData/actions";
 function SearchContainer(props) {
 
     return (
-        <div className="jumbotron mb-0 text-left">
+        <div className="jumbotron mb-0 text-left search-container">
             <div className="container">
                 { Object.keys(props.movieDetails).length > 0 &&
                     <MovieDetails

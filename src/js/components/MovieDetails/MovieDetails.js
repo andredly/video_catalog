@@ -33,7 +33,6 @@ function MovieDetails(props) {
                 </div>
             </div>
         </div>
-
     )
 }
 

@@ -22,11 +22,6 @@ function Movie(props){
         )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        movies: state.moviesReducer.movieDetails
-    }
-};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -36,4 +31,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Movie);
+export default connect(null, mapDispatchToProps)(Movie);

@@ -32,7 +32,7 @@ class ResultsBody extends Component {
         const hasContent = this.props.movies.length > 0;
         if (!this.shouldComponentRender()) return <Loader load={true}/>;
         return (
-            <div className="album py-5 jumbotron mb-0">
+            <div className="album py-5 jumbotron mb-0 result-body">
                 {this.props.error && <div className='text-body'>{this.props.error}</div>}
                 {hasContent ? (
                     <InfiniteScroll dataLength={this.props.movies.length}

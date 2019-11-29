@@ -5,13 +5,12 @@ import SearchContainer from "./SearchContainer";
 import ResultPanel from "./ResultPanel";
 import ResultsBody from "../components/ResultBody/ResultsBody";
 import Footer from "../components/Footer";
-import MovieDetails from "../components/MovieDetails/MovieDetails";
 
 class Container extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <div className="main">
                 <Header/>
                 <main role="main">
                     <SearchContainer/>
@@ -19,7 +18,7 @@ class Container extends Component {
                     <ResultsBody/>
                 </main>
                 <Footer/>
-            </React.Fragment>
+            </div>
         )
     }
 }
