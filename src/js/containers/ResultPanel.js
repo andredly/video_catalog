@@ -12,19 +12,26 @@ function ResultPanel(props) {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <ResultCount count={props.movies.length}/>
+                        {props.typeResult === "movieDetails" &&
+                        <ResultCount text={`Film by the ${props.movieDetails.genres} genre`}/>
+                        }
+                        {props.typeResult === "home" &&
+                         <ResultCount text={`${props.movies.length} movies found`}/>
+                         }
                     </div>
-                    <div className="col-sm">
-                        <SearchFilter
-                            typeText={"SORT BY"}
-                            firstTypeText={"RELEASE_DATA"}
-                            firstTypeValue={"release_date"}
-                            secondTypeText={"RATING"}
-                            secondTypeValue={"vote_average"}
-                            setOption={props.setOption}
-                            searchFetchMovies={props.searchFetchMovies}
-                            searchParams={props.searchParams}/>
-                    </div>
+                    { props.searchFilterEnable &&
+                        <div className="col-sm">
+                            <SearchFilter
+                                typeText={"SORT BY"}
+                                firstTypeText={"RELEASE_DATA"}
+                                firstTypeValue={"release_date"}
+                                secondTypeText={"RATING"}
+                                secondTypeValue={"vote_average"}
+                                setOption={props.setOption}
+                                searchFetchMovies={props.searchFetchMovies}
+                                searchParams={props.searchParams}/>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -38,7 +45,8 @@ const mapStateToProps = (state) => {
             searchBy : state.resultOptionReducer.searchBy,
             sortBy : state.resultOptionReducer.sortBy
         },
-        movies : state.moviesReducer.movies
+        movies : state.moviesReducer.movies,
+        movieDetails: state.moviesReducer.movieDetails
     }
 };
 

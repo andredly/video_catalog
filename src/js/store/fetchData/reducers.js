@@ -1,10 +1,12 @@
 import {
-    ADD_MOVIES_TO_STATE,
+    ADD_MOVIES_TO_STATE, CLEAR_MOVIE,
     FETCH_MOVIES_ERROR,
     FETCH_MOVIES_PENDING,
     GET_MOVIE_DETAILS,
     GET_MOVIES_LIST
 } from "./actions";
+import {CLEAR_STATE} from "../actions";
+import {CHANGE_GENRES} from "../search/actions";
 
 
 const defaultState = {
@@ -24,7 +26,8 @@ export const moviesReducer = (state = defaultState, action) => {
                 ...state,
                 movies : action.movies.data,
                 offset : action.movies.offset,
-                pending: false
+                pending: false,
+                total : action.movies.total
             };
         case GET_MOVIE_DETAILS :
             return {
@@ -49,7 +52,29 @@ export const moviesReducer = (state = defaultState, action) => {
                 ...state,
                 pending: false,
                 error: action.error
-            }
+            };
+        case CLEAR_STATE :
+            return {
+                ...state,
+                ...defaultState
+            };
+        case CLEAR_MOVIE :
+            return {
+                ...state,
+                movies : [],
+                pending: false,
+                limit: 20,
+                offset: 0,
+                total: 0
+            };
+        case CHANGE_GENRES :
+            return {
+                ...state,
+                limit: 20,
+                offset: 0,
+                total: 0,
+                movies : []
+            };
     }
     return state;
 };

@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import Movie from "../Movie";
 import "./ResultsBody.css"
-import {loadMoreMovies, loadMovies} from "../../store/fetchData/actions";
+import {loadMoreMovies} from "../../store/fetchData/actions";
 import {connect} from "react-redux";
-import InfiniteScroll from "react-infinite-scroll-component";
 import {NoFilmsFound} from "../NoFilmsFound";
 import {Loader} from "../Loader";
 
@@ -12,51 +11,55 @@ class ResultsBody extends Component {
     constructor(props) {
         super(props);
         this.fetchNextMovies = this.fetchNextMovies.bind(this);
+        this.onScrollHandler = this.onScrollHandler.bind(this)
     }
+
 
     componentDidMount() {
-        this.props.fetchMovies(this.props.searchParams);
+        global.document.addEventListener('scroll', this.onScrollHandler);
     }
 
+    componentWillUnmount() {
+        global.document.removeEventListener('scroll', this.onScrollHandler);
+    }
+
+    onScrollHandler() {
+        let moreData = (this.props.total >= this.props.searchParams.limit) && (this.props.total > this.props.searchParams.offset);
+        if ((global.window.innerHeight + global.window.pageYOffset)
+            >= global.document.body.scrollHeight && !this.props.pending &&
+            moreData) {
+            this.fetchNextMovies();
+        }
+    };
 
     fetchNextMovies() {
         this.props.searchParams.offset = this.props.searchParams.offset + this.props.searchParams.limit;
         this.props.addMovieToState(this.props.searchParams);
     }
 
-    shouldComponentRender() {
-        return this.props.pending !== false;
-    }
-
     render() {
         const hasContent = this.props.movies.length > 0;
-        if (!this.shouldComponentRender()) return <Loader load={true}/>;
         return (
             <div className="album py-5 jumbotron mb-0 result-body">
+                {this.props.pending && <Loader load={true}/>}
                 {this.props.error && <div className='text-body'>{this.props.error}</div>}
                 {hasContent ? (
-                    <InfiniteScroll dataLength={this.props.movies.length}
-                                    next={this.fetchNextMovies}
-                                    hasMore={true}
-                                    loader={<Loader load={this.props.pending}/>}>
-                        <div className="container">
-                            <div className="row">
-                                {this.props.movies.map((movie) =>
-                                    <Movie
-                                        title={movie.title}
-                                        id={movie.id}
-                                        key={movie.id}
-                                        releaseData={movie.release_date}
-                                        genres={movie.genres.join(" & ")}
-                                        posterPath={movie.poster_path}
-                                    />
-                                )}
-                            </div>
-
+                    <div className="container">
+                        <div className="row">
+                            {this.props.movies.map((movie) =>
+                                <Movie
+                                    title={movie.title}
+                                    id={movie.id}
+                                    key={movie.id}
+                                    releaseData={movie.release_date}
+                                    genres={movie.genres}
+                                    posterPath={movie.poster_path}
+                                />
+                            )}
                         </div>
-                    </InfiniteScroll>
+                    </div>
                 ) : (
-                    <NoFilmsFound/>
+                    !this.props.pending && <NoFilmsFound/>
                 )}
             </div>
         )
@@ -64,31 +67,13 @@ class ResultsBody extends Component {
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        movies: state.moviesReducer.movies,
-        searchParams: {
-            search: state.resultOptionReducer.search,
-            searchBy: state.resultOptionReducer.searchBy,
-            sortBy: state.resultOptionReducer.sortBy,
-            limit: state.moviesReducer.limit,
-            offset: state.moviesReducer.offset
-        },
-        pending: state.resultOptionReducer.pending,
-        error: state.resultOptionReducer.error
-
-    }
-};
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchMovies: (queryParams) => {
-            dispatch(loadMovies(queryParams))
-        },
         addMovieToState: (movies) => {
             dispatch(loadMoreMovies(movies))
         }
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsBody);
+export default connect(null, mapDispatchToProps)(ResultsBody);
