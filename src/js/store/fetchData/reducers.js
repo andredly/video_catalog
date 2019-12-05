@@ -7,6 +7,7 @@ import {
 } from "./actions";
 import {CLEAR_STATE} from "../actions";
 import {CHANGE_GENRES} from "../search/actions";
+import 'cross-fetch/polyfill'
 
 
 const defaultState = {
@@ -38,7 +39,8 @@ export const moviesReducer = (state = defaultState, action) => {
         case ADD_MOVIES_TO_STATE :
             return {
                 ...state,
-                movies : state.movies.concat(action.movies.data),
+                // movies : Array.from(new Set(state.movies.concat(action.movies.data).map(JSON.stringify))).map(JSON.parse),
+                movies : state.movies.concat(action.movies.data).filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i),
                 offset : action.movies.offset,
                 pending: false,
             };

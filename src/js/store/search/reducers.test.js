@@ -1,5 +1,6 @@
-import {CHANGE_OPTION_SEARCH_BY, CHANGE_OPTION_SORT_BY, GET_SEARCH_TEXT} from "./actions";
+import {CHANGE_GENRES, CHANGE_OPTION_SEARCH_BY, CHANGE_OPTION_SORT_BY, GET_SEARCH_TEXT} from "./actions";
 import {resultOptionReducer} from "./reducers";
+import {CLEAR_STATE} from "../actions";
 
 describe('resultOptionReducer', () => {
 
@@ -9,7 +10,8 @@ describe('resultOptionReducer', () => {
         defaultState = {
             search: "",
             searchBy: "title",
-            sortBy: "release_data"
+            sortBy: "release_data",
+            genres: ""
         };
     });
 
@@ -48,6 +50,28 @@ describe('resultOptionReducer', () => {
         expect(resultOptionReducer(defaultState, action)).toEqual({
             ...defaultState,
             search : "searchTest"
+        })
+    });
+
+    it('CHANGE_GENRES', () => {
+        const action = {
+            type: CHANGE_GENRES,
+            genres: ["1","2"]
+        };
+
+        expect(resultOptionReducer(defaultState, action)).toEqual({
+            ...defaultState,
+            genres: "1,2"
+        })
+    });
+
+    it('CLEAR_STATE', () => {
+        const action = {
+            type: CLEAR_STATE
+        };
+
+        expect(resultOptionReducer(defaultState, action)).toEqual({
+            ...defaultState
         })
     });
 

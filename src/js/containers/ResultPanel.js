@@ -3,7 +3,6 @@ import SearchFilter from "../components/SearchFilter/SearchFilter";
 import ResultCount from "../components/ResultCount";
 import {setOptionSort} from "../store/search/actions";
 import {connect} from "react-redux";
-import {loadMovies} from "../store/fetchData/actions";
 
 function ResultPanel(props) {
 
@@ -28,7 +27,6 @@ function ResultPanel(props) {
                                 secondTypeText={"RATING"}
                                 secondTypeValue={"vote_average"}
                                 setOption={props.setOption}
-                                searchFetchMovies={props.searchFetchMovies}
                                 searchParams={props.searchParams}/>
                         </div>
                     }
@@ -54,9 +52,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setOption : option => {
             dispatch(setOptionSort(option))
-        },
-        searchFetchMovies: queryParams => {
-            dispatch(loadMovies(queryParams))
         }
     };
 };

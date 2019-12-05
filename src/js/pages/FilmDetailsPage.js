@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import ResultPanel from "../containers/ResultPanel";
 import ResultsBody from "../components/ResultBody/ResultsBody";
-import MovieDetailsContainer from "../containers/MovieDetailsContainer/MovieDetailsContainer";
+import MovieDetails from "../components/MovieDetails/MovieDetails";
 import {loadMovieDetails, loadMovies} from "../store/fetchData/actions";
 import {connect} from "react-redux";
 
@@ -31,7 +31,7 @@ class FilmDetailsPage extends Component {
     render() {
         return (
             <>
-                <MovieDetailsContainer movieDetails={this.props.movieDetails}/>
+                <MovieDetails movieDetails={this.props.movieDetails}/>
                 <ResultPanel searchFilterEnable={false} typeResult="movieDetails"/>
                 <ResultsBody movies={this.props.movies}
                              searchParams={this.props.searchParams}

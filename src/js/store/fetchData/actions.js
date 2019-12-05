@@ -15,32 +15,33 @@ export function fetchMoviesPending() {
     }
 }
 
-export function fetchMoviesError(products) {
+export function fetchMoviesError(error) {
     return {
         type: FETCH_MOVIES_ERROR,
-        products: products
+        error: error
     }
 }
 
-function fetchMovies(queryParams) {
+function getUrl(queryParams) {
+    queryParams.sortOrder = "desc";
     const queryParamsString = querystring.stringify(queryParams);
     queryParams = queryParams ? `?${queryParamsString}` : "";
     const url = `${BASE_URL}${MOVIES_PATH}${queryParams}`;
-    console.log(url)
-    return fetch(url)
-        .then(response => response.json())
+    console.log(url);
+    return url;
 }
 
 export function loadMovies(queryParams) {
     return (dispatch) => {
         dispatch(fetchMoviesPending());
-         fetchMovies(queryParams)
+        return fetch(getUrl(queryParams))
+            .then(response => response.json())
             .then(movies => {
                 if (movies.error) {
                     throw(movies.error);
                 }
                 dispatch(setAllMovies(movies));
-                return movies;
+                // return movies;
             })
             .catch(error => {
                 dispatch(fetchMoviesError(error));
@@ -51,13 +52,14 @@ export function loadMovies(queryParams) {
 export function loadMoreMovies(queryParams) {
     return (dispatch) => {
         dispatch(fetchMoviesPending());
-         fetchMovies(queryParams)
+        return fetch(getUrl(queryParams))
+            .then(response => response.json())
             .then(movies => {
                 if (movies.error) {
                     throw(movies.error);
                 }
                 dispatch(addMoviesToState(movies));
-                return movies;
+                // return movies;
             })
             .catch(error => {
                 dispatch(fetchMoviesError(error));
@@ -77,7 +79,7 @@ export function loadMovieDetails(id) {
                     throw(movieDetails.error);
                 }
                 dispatch(setMovieDetails(movieDetails));
-                return movieDetails;
+                // return movieDetails;
             })
             .catch(error => {
                 dispatch(fetchMoviesError(error));

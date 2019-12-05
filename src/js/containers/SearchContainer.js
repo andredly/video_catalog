@@ -3,7 +3,6 @@ import SearchFilter from "../components/SearchFilter/SearchFilter";
 import SearchInput from "../components/SearchInput";
 import {setOptionSearch, setSearchText} from "../store/search/actions";
 import {connect} from "react-redux";
-import {loadMovies} from "../store/fetchData/actions";
 
 function SearchContainer(props) {
 
@@ -41,10 +40,7 @@ const mapDispatchToProps = (dispatch) => {
         setOption : option => {
             dispatch(setOptionSearch(option))
         },
-        setSearchText : input => dispatch(setSearchText(input)),
-        searchFetchMovies: queryParams => {
-            dispatch(loadMovies(queryParams))
-        }
+        setSearchText : input => dispatch(setSearchText(input))
     };
 };
 

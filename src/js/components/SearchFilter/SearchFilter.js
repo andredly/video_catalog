@@ -17,11 +17,6 @@ class SearchFilter extends Component{
         if (classList.contains("disabled")) {
             this.state.isFirstButtonActive = !this.state.isFirstButtonActive;
         }
-        const searchFetchMovies = this.props.searchFetchMovies;
-        if (searchFetchMovies){
-            this.props.searchParams.sortBy = event.target.value;
-            searchFetchMovies(this.props.searchParams)
-        }
     }
 
     render() {

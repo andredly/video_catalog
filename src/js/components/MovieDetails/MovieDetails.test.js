@@ -2,9 +2,8 @@ import React from "react";
 import toJson from "enzyme-to-json";
 import MovieDetails from "./MovieDetails";
 
-
 describe("MovieDetails", () => {
-    const props = {
+    const movieDetails = {
         title: "Call Me by Your Name",
         tagline: "",
         "vote_average": 8.3,
@@ -19,19 +18,9 @@ describe("MovieDetails", () => {
         runtime: 132
     };
 
-    const wrapper = shallow(<MovieDetails
-        title={props.title}
-        tagline={props.tagline}
-        voteAverage={props.vote_average}
-        voteCount={props.vote_count}
-        releaseDate={props.release_date}
-        posterPath={props.poster_path}
-        overview={props.overview}
-        genres={props.genres}
-        runtime={props.runtime}/>);
+    const wrapper = shallow(<MovieDetails movieDetails={movieDetails}/>);
 
     it('renders correctly', () => {
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 });
-

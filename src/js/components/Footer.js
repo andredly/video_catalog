@@ -5,7 +5,7 @@ function Footer() {
 
     return (
         <footer>
-            <div className="navbar navbar-dark bg-secondary shadow-sm">
+            <div className="footer-copyright py-3 bg-secondary shadow-sm">
                 <div className="container d-flex justify-content-between">
                     <Logo/>
                 </div>

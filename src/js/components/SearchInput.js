@@ -6,18 +6,14 @@ class SearchInput extends Component {
     constructor(props) {
         super(props);
         this.onSearchTextChange = this.onSearchTextChange.bind(this);
-        this.fetchMoviesOnSearchButtonClick = this.fetchMoviesOnSearchButtonClick.bind(this);
     }
 
     onSearchTextChange(event) {
         this.props.setSearchText(event.target.value);
     }
 
-    fetchMoviesOnSearchButtonClick() {
-        this.props.searchFetchMovies(this.props.searchParams)
-    }
-
     render() {
+        // this.props.searchParams.sortOrder = "desc";
         let queryString = Object.keys(this.props.searchParams).map(key => key + '=' + encodeURIComponent(this.props.searchParams[key])).join('&');
         return (
             <div className="container">
@@ -38,6 +34,5 @@ class SearchInput extends Component {
 
     }
 }
-
 
 export default SearchInput;

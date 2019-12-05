@@ -1,14 +1,14 @@
 import React from "react";
-import renderer from 'react-test-renderer';
-import Logo from "./Logo";
 import Header from "./Header";
+import Footer from "./Footer";
+import toJson from "enzyme-to-json";
+
 
 describe("Header", () => {
+    const wrapper = shallow(<Header/>);
+
     it('renders correctly', () => {
-        const tree = renderer
-            .create(<Header/>)
-            .toJSON();
-        expect(tree).toMatchSnapshot();
+        expect(toJson(wrapper)).toMatchSnapshot();
     });
 });
 
