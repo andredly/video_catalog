@@ -2,8 +2,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import fetchMock from 'fetch-mock'
 import * as actions from "./actions";
-import {FETCH_MOVIES_PENDING, GET_MOVIE_DETAILS} from "./actions";
-import {ADD_MOVIES_TO_STATE} from "./actions";
+import {ADD_MOVIES_TO_STATE, FETCH_MOVIES_ERROR, FETCH_MOVIES_PENDING, GET_MOVIE_DETAILS} from "./actions";
 
 export const GET_MOVIES_LIST = "GET_MOVIES_LIST";
 
@@ -18,6 +17,11 @@ describe('actions moviesReducer', () => {
         store = mockStore({});
         fetchMock.restore()
     });
+
+    afterEach(() => {
+        fetchMock.reset()
+    });
+
 
     it('creates GET_MOVIES_LIST when fetching moves has been done', () => {
 
@@ -99,6 +103,29 @@ describe('actions moviesReducer', () => {
                 expect(store.getActions())
                     .toEqual(expectedActions);
             });
-    })
+    });
+
+    it('handles errors', async () => {
+
+        fetchMock.get('https://reactjs-cdp.herokuapp.com/movies/10', {
+            status: 500,
+            body : { error : "error"}});
+
+        const expectedActions = [
+            {
+                "type": "FETCH_MOVIES_PENDING"
+            },
+            {
+                "error": "error",
+                "type": "FETCH_MOVIES_ERROR"
+            }
+        ];
+
+        store.dispatch(actions.loadMovieDetails(10));
+
+        store.subscribe(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
 
 });

@@ -5,7 +5,6 @@ import thunk from "redux-thunk";
 import toJson from "enzyme-to-json";
 import {MemoryRouter} from "react-router";
 import {Provider} from "react-redux";
-const sinon = require('sinon');
 
 describe("ResultsBody", () => {
     const middlewares = [thunk];
