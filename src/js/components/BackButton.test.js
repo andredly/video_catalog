@@ -3,22 +3,7 @@ import BackButton from "./BackButton";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import toJson from "enzyme-to-json";
-import Movie from "./Movie";
 import {MemoryRouter} from "react-router";
-
-
-// function setup() {
-//     const props = {
-//         clearState: jest.fn()
-//     };
-//
-//     const enzymeWrapper = shallow(<BackButton {...props} />);
-//
-//     return {
-//         props,
-//         enzymeWrapper
-//     }
-// }
 
 describe("BackButton", () => {
 

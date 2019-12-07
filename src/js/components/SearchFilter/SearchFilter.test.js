@@ -49,11 +49,6 @@ describe("SearchFilter", () => {
         expect(wrapper.find('button').first().props().value).toEqual("title");
     });
 
-    // it('Expect searchFetchMovies to be called on button click', () => {
-    //     wrapper.find('button').first().simulate('click', event);
-    //     expect(searchFetchMoviesMock).toBeCalled();
-    // });
-
 });
 
 
