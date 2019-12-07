@@ -18,6 +18,9 @@ describe("ResultPanel", () => {
             movies: {
                 1: {},
                 2: {}
+            },
+            movieDetails : {
+                genres : ["Drama"]
             }
         },
         searchFetchMovies: searchFetchMoviesMock,
@@ -29,7 +32,7 @@ describe("ResultPanel", () => {
 
     beforeEach(() => {
         store = mockStore(initialState);
-        wrapper = mount(<ResultPanel store={store}/>);
+        wrapper = mount(<ResultPanel typeResult={"movieDetails"} store={store} searchFilterEnable={true}/>);
     });
 
     it('renders correctly', () => {
@@ -41,13 +44,12 @@ describe("ResultPanel", () => {
 
 
     it('SearchFilter component option was changed data and fetches data after click to last button', () => {
+        console.log(wrapper.html()
+        )
         wrapper.find('.btn-group button').last().simulate('click');
         expect(store.getActions()).toEqual([{
             "sortBy": "vote_average",
             "type": "CHANGE_OPTION_SORT_BY"
-        },
-        {
-            "type": "FETCH_MOVIES_PENDING"
         }]);
     });
 
@@ -56,9 +58,6 @@ describe("ResultPanel", () => {
         expect(store.getActions()).toEqual([{
             "sortBy": "release_date",
             "type": "CHANGE_OPTION_SORT_BY"
-        },
-        {
-            "type": "FETCH_MOVIES_PENDING"
         }]);
     });
 });

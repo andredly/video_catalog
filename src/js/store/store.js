@@ -8,9 +8,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist: ['container']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
 
 export const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(thunk)));
 export const persistor = persistStore(store);
+persistor.purge();
+persistor.pause();

@@ -8,7 +8,7 @@ describe("ResultCount", () => {
         count : 10
     };
 
-    const wrapper = shallow(<ResultCount count={props.count}/>);
+    const wrapper = shallow(<ResultCount text={"10 movies found"}/>);
 
     it('renders correctly', () => {
         expect(toJson(wrapper)).toMatchSnapshot();

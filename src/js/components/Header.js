@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "./Logo";
-import {BackButton} from "./BackButton";
+import BackButton from "./BackButton";
 
 function Header() {
 

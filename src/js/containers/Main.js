@@ -9,8 +9,6 @@ import "@babel/polyfill";
 
 export const BASE_URL = "https://reactjs-cdp.herokuapp.com";
 export const MOVIES_PATH = "/movies";
-export const MOVIE_PATH = "/{id}";
-export const QUERY_PARAMS = "";
 
 class Main extends Component {
 
