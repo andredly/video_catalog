@@ -5,15 +5,21 @@ import thunk from "redux-thunk";
 import storage from 'redux-persist/lib/storage'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const persistConfig = {
-    key: 'root',
-    storage,
-    blacklist: ['container']
-};
+// const persistConfig = {
+//     key: 'root',
+//     storage,
+//     blacklist: ['container']
+// };
 
-const persistedReducer = persistReducer(persistConfig, rootReducers);
+// const persistedReducer = persistReducer(persistConfig, rootReducers);
+//
+// export const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(thunk)));
+// export const persistor = persistStore(store);
+// persistor.purge();
+// persistor.pause();
 
-export const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(thunk)));
-export const persistor = persistStore(store);
-persistor.purge();
-persistor.pause();
+
+const configureStore = preloadedState =>
+    createStore(rootReducers, preloadedState, applyMiddleware(thunk));
+
+export default configureStore;

@@ -7,6 +7,7 @@ function HomePage() {
 
     return (
         <>
+            <div className={"home-page"}></div>
             <SearchContainer/>
             <ResultPanel searchFilterEnable={true} typeResult="home"/>
             <ResultsBody movies={[]}/>

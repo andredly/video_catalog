@@ -14,9 +14,18 @@ class SearchPage extends Component {
         super(props);
     }
 
+    static initialAction(req) {
+        const searchParams = req.query;
+        Object.keys(searchParams).forEach(key => searchParams[key] === undefined && (searchParams[key] = ""))
+        return loadMovies(searchParams)
+    }
+
     componentDidMount() {
         let query = this.props.location.search;
-        this.updateData(query);
+        const isEmptyStateMovies = Object.keys(this.props.movies).length === 0;
+        if (query && isEmptyStateMovies) {
+            this.parseQueryAndUpdateData(query);
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -25,14 +34,18 @@ class SearchPage extends Component {
         if (query === preQuery) {
             return
         }
-        this.updateData(query);
+        this.parseQueryAndUpdateData(query);
     }
 
-    updateData (query) {
+    parseQueryAndUpdateData(query) {
         if (this.props.location.search) {
-            query = query.replace("?","")
+            query = query.replace("?", "")
         }
-        const searchParams = querystring.parse(query);
+        this.updateData(querystring.parse(query));
+    }
+
+    updateData(searchParams) {
+        Object.keys(searchParams).forEach(key => searchParams[key] === undefined && (searchParams[key] = ""))
         this.props.fetchMovies(searchParams);
         this.props.setSearchText(searchParams.search);
     }
@@ -40,6 +53,7 @@ class SearchPage extends Component {
     render() {
         return (
             <>
+                <div className={"search-page"}></div>
                 <SearchContainer/>
                 <ResultPanel searchFilterEnable={true} typeResult="home"/>
                 <ResultsBody movies={this.props.movies}
@@ -73,7 +87,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchMovies: (queryParams) => {
             dispatch(loadMovies(queryParams))
         },
-        setSearchText : input => dispatch(setSearchText(input))
+        setSearchText: input => dispatch(setSearchText(input))
     };
 };
 

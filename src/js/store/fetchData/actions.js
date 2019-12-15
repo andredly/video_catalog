@@ -1,13 +1,13 @@
-import {BASE_URL, MOVIES_PATH} from "../../containers/Main";
-
 const querystring = require('querystring');
-
+import 'isomorphic-fetch';
 export const GET_MOVIES_LIST = "GET_MOVIES_LIST";
 export const GET_MOVIE_DETAILS = "GET_MOVIE_DETAILS";
 export const ADD_MOVIES_TO_STATE = "ADD_MOVIES_TO_STATE";
 export const FETCH_MOVIES_PENDING = 'FETCH_MOVIES_PENDING';
 export const FETCH_MOVIES_ERROR = 'FETCH_MOVIES_ERROR';
 export const CLEAR_MOVIE = 'CLEAR_MOVIE';
+const BASE_URL = "https://reactjs-cdp.herokuapp.com";
+const MOVIES_PATH = "/movies";
 
 export function fetchMoviesPending() {
     return {
@@ -41,7 +41,7 @@ export function loadMovies(queryParams) {
                     throw(movies.error);
                 }
                 dispatch(setAllMovies(movies));
-                // return movies;
+                return movies;
             })
             .catch(error => {
                 dispatch(fetchMoviesError(error));
@@ -59,7 +59,7 @@ export function loadMoreMovies(queryParams) {
                     throw(movies.error);
                 }
                 dispatch(addMoviesToState(movies));
-                // return movies;
+                return movies;
             })
             .catch(error => {
                 dispatch(fetchMoviesError(error));
@@ -79,7 +79,7 @@ export function loadMovieDetails(id) {
                     throw(movieDetails.error);
                 }
                 dispatch(setMovieDetails(movieDetails));
-                // return movieDetails;
+                return movieDetails;
             })
             .catch(error => {
                 dispatch(fetchMoviesError(error));
