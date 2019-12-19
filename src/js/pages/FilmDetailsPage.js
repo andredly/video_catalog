@@ -4,11 +4,25 @@ import ResultsBody from "../components/ResultBody/ResultsBody";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
 import {loadMovieDetails, loadMovies} from "../store/fetchData/actions";
 import {connect} from "react-redux";
+import {matchPath} from "react-router-dom";
+import routes from "../containers/routes";
 
 class FilmDetailsPage extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    static initialAction(req) {
+        function getRouteData() {
+            let matchingRoute = routes.find(route => {
+                return matchPath(req.path, route);
+            });
+            return matchPath(req.path, matchingRoute);
+        }
+
+        let {params} = getRouteData();
+        return loadMovieDetails(params.id)
     }
 
     componentDidMount() {
@@ -23,7 +37,7 @@ class FilmDetailsPage extends Component {
         if (id === newId) {
             return
         }
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         this.props.fetchMovieDetails(this.props.match.params.id);
         this.props.fetchMovies(this.props.searchParams);
     }
@@ -31,6 +45,7 @@ class FilmDetailsPage extends Component {
     render() {
         return (
             <>
+                <div className={"film-detail-page"}></div>
                 <MovieDetails movieDetails={this.props.movieDetails}/>
                 <ResultPanel searchFilterEnable={false} typeResult="movieDetails"/>
                 <ResultsBody movies={this.props.movies}

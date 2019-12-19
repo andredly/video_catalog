@@ -5,13 +5,13 @@ import {loadMoreMovies} from "../../store/fetchData/actions";
 import {connect} from "react-redux";
 import {NoFilmsFound} from "../NoFilmsFound";
 import {Loader} from "../Loader";
+import autoBind from "auto-bind";
 
 class ResultsBody extends Component {
 
     constructor(props) {
         super(props);
-        this.fetchNextMovies = this.fetchNextMovies.bind(this);
-        this.onScrollHandler = this.onScrollHandler.bind(this)
+        autoBind(this);
     }
 
 

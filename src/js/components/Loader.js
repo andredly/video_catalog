@@ -9,6 +9,5 @@ export function Loader(props) {
             </div>
         )
     }
-    return (<></>)
 }
 
