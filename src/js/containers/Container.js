@@ -1,18 +1,16 @@
-import React, {Component} from "react";
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import FilmDetailsPage from "../pages/FilmDetailsPage";
-import SearchPage from "../pages/SearchPage";
-import {NotFoundPage} from "../pages/NoFoundPage";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import HomePage from '../pages/HomePage';
+import FilmDetailsPage from '../pages/FilmDetailsPage';
+import SearchPage from '../pages/SearchPage';
+import NotFoundPage from '../pages/NoFoundPage';
 
 
-class Container extends Component {
-
-    render() {
-        return (
+function Container() {
+  return (
             <div className="main">
                 <Router>
                     <Header/>
@@ -27,8 +25,7 @@ class Container extends Component {
                 </Router>
                 <Footer/>
             </div>
-        )
-    }
+  );
 }
 
 export default Container;

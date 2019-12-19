@@ -1,19 +1,17 @@
-import React, {Component} from "react";
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import ErrorBoundary from "./error/ErrorBoundary";
-import Container from "./Container";
-import {Provider} from "react-redux";
-import {PersistGate} from 'redux-persist/integration/react'
-import { persistor, store } from "../store/store";
-import "@babel/polyfill";
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import ErrorBoundary from './error/ErrorBoundary';
+import Container from './Container';
+import { persistor, store } from '../store/store';
+import '@babel/polyfill';
 
-export const BASE_URL = "https://reactjs-cdp.herokuapp.com";
-export const MOVIES_PATH = "/movies";
+export const BASE_URL = 'https://reactjs-cdp.herokuapp.com';
+export const MOVIES_PATH = '/movies';
 
-class Main extends Component {
-
-    render() {
-        return (
+function Main() {
+  return (
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
                     <ErrorBoundary>
@@ -21,8 +19,7 @@ class Main extends Component {
                     </ErrorBoundary>
                 </PersistGate>
             </Provider>
-        )
-    }
+  );
 }
 
 export default Main;

@@ -1,15 +1,15 @@
-import React from "react";
-import "./MovieDetails.css"
+import PropTypes from 'prop-types';
+import React from 'react';
+import './MovieDetails.css';
 
-function MovieDetails({movieDetails}) {
+function MovieDetails({ movieDetails }) {
+  const releaseDate = new Date(movieDetails.release_date).getUTCFullYear();
 
-    let releaseDate = new Date(movieDetails.release_date).getUTCFullYear();
-
-    return (
+  return (
         <div className="jumbotron mb-0 text-left search-container">
             <div className="container">
                 <div className="card flex-md-row mb-4 shadow-sm h-md-250">
-                    {/*{error && <span className='product-list-error'>{error}</span>}*/}
+                    {/* {error && <span className='product-list-error'>{error}</span>} */}
                     <div className="card-body d-flex flex-column align-items-start">
                         <div className="row">
                             <div className="col-md-4">
@@ -20,14 +20,22 @@ function MovieDetails({movieDetails}) {
                                 <div className="card-body">
                                     <div className="d-flex flex-row bd-highlight pb-3">
                                         <h1 className="card-title">{movieDetails.title}</h1>
-                                        { movieDetails.vote_average ? (<div className="numberCircle">{movieDetails.vote_average}</div>): (<div/>) }
+                                        { movieDetails.vote_average
+                                          ? (<div className="numberCircle">{movieDetails.vote_average}</div>)
+                                          : (<div/>) }
                                     </div>
                                     <p className="card-text">{movieDetails.tagline}</p>
                                     <div className="d-flex flex-row bd-highlight pb-3">
-                                        <div className="movieDate bd-highlight">{releaseDate}<small
-                                            className="text-muted pl-md-1 bd-highlight">{releaseDate ? "year" : ""}</small></div>
-                                        <div className="moveRuntime pl-md-2 bd-highlight">{movieDetails.runtime}<small
-                                            className="text-muted pl-md-1 bd-highlight">{movieDetails.runtime ? "min" : ""}</small></div>
+                                        <div className="movieDate bd-highlight">{releaseDate}
+                                           <small className="text-muted pl-md-1 bd-highlight">
+                                               {releaseDate ? 'year' : ''}
+                                           </small>
+                                        </div>
+                                        <div className="moveRuntime pl-md-2 bd-highlight">{movieDetails.runtime}
+                                            <small className="text-muted pl-md-1 bd-highlight">
+                                                {movieDetails.runtime ? 'min' : ''}
+                                            </small>
+                                        </div>
                                     </div>
                                     <p className="card-text">{movieDetails.overview}</p>
                                 </div>
@@ -37,10 +45,10 @@ function MovieDetails({movieDetails}) {
                 </div>
             </div>
         </div>
-    )
+  );
 }
-
-
-
+MovieDetails.propTypes = {
+  movieDetails: PropTypes.object.isRequired,
+};
 
 export default MovieDetails;

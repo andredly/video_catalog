@@ -1,0 +1,12 @@
+[ignore]
+
+[include]
+
+[libs]
+./src/js/components/store
+[lints]
+
+[options]
+
+[strict]
+
