@@ -13,7 +13,7 @@ export default function renderHtml(content, preloadedState) {
         
               <div id="app">${content}</div>
               <script>
-                window.__PRELOADED_STATE_ = ${JSON.stringify(preloadedState).replace(
+                window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
     /</g,
     '\\u003c',
   )}

@@ -7,7 +7,7 @@ import ContainerSsr from '../js/containers/ContainerSsr';
 import configureStore from '../js/store/store';
 import ErrorBoundary from '../js/containers/error/ErrorBoundary';
 
-const store = configureStore(window.__PRELOADED_STATE_);
+const store = configureStore(window.__PRELOADED_STATE__);
 
 const root = (
     <Provider store={store}>
