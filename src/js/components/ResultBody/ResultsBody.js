@@ -38,7 +38,7 @@ class ResultsBody extends Component {
   }
 
   render() {
-    const hasContent = this.props.movies.length > 0;
+    const hasContent = !this.props.movies.isEmpty();
     return (
             <div className="album py-5 jumbotron mb-0 result-body">
                 {this.props.pending && <Loader load={true}/>}
@@ -47,12 +47,12 @@ class ResultsBody extends Component {
                     <div className="container">
                         <div className="row">
                             {this.props.movies.map((movie) => <Movie
-                                    title={movie.title}
-                                    id={movie.id}
-                                    key={movie.id}
-                                    releaseData={movie.release_date}
-                                    genres={movie.genres}
-                                    posterPath={movie.poster_path}
+                                    title={movie.toJS().title}
+                                    id={movie.toJS().id}
+                                    key={movie.toJS().id}
+                                    releaseData={movie.toJS().release_date}
+                                    genres={movie.toJS().genres}
+                                    posterPath={movie.toJS().poster_path}
                                 />)}
                         </div>
                     </div>

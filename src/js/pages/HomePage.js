@@ -2,6 +2,7 @@ import React from 'react';
 import SearchContainer from '../containers/SearchContainer';
 import ResultPanel from '../containers/ResultPanel';
 import ResultsBody from '../components/ResultBody/ResultsBody';
+import {Set} from 'immutable';
 
 function HomePage() {
   return (
@@ -9,7 +10,7 @@ function HomePage() {
             <div className={'home-page'}></div>
             <SearchContainer/>
             <ResultPanel searchFilterEnable={true} typeResult="home"/>
-            <ResultsBody movies={[]}/>
+            <ResultsBody movies={Set()}/>
     </>
   );
 }

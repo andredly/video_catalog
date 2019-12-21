@@ -22,8 +22,8 @@ class SearchPage extends Component {
 
   componentDidMount() {
     const query = this.props.location.search;
-    const isEmptyStateMovies = Object.keys(this.props.movies).length === 0;
-    if (query && isEmptyStateMovies) {
+    // const isEmptyStateMovies = Object.keys(this.props.movies).length === 0;
+    if (query && this.props.movies.isEmpty()) {
       this.parseQueryAndUpdateData(query);
     }
   }

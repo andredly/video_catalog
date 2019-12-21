@@ -1,19 +1,21 @@
 import {
-  ADD_MOVIES_TO_STATE, CLEAR_MOVIE,
+  ADD_MOVIES_TO_STATE,
+  CLEAR_MOVIE,
   FETCH_MOVIES_ERROR,
   FETCH_MOVIES_PENDING,
   GET_MOVIE_DETAILS,
   GET_MOVIES_LIST,
 } from './actions';
-import { CLEAR_STATE } from '../actions';
-import { CHANGE_GENRES } from '../search/actions';
+import {CLEAR_STATE} from '../actions';
+import {CHANGE_GENRES} from '../search/actions';
 import 'cross-fetch/polyfill';
+import {fromJS, Set} from 'immutable';
 
 
 const defaultState = {
   pending: false,
   error: null,
-  movies: [],
+  movies: Set(),
   movieDetails: {},
   limit: 20,
   offset: 0,
@@ -25,7 +27,7 @@ const moviesReducer = (state = defaultState, action) => {
     case GET_MOVIES_LIST:
       return {
         ...state,
-        movies: action.movies.data,
+        movies: fromJS(action.movies.data).toSet(),
         offset: action.movies.offset,
         pending: false,
         total: action.movies.total,
@@ -40,7 +42,8 @@ const moviesReducer = (state = defaultState, action) => {
       return {
         ...state,
         // movies : Array.from(new Set(state.movies.concat(action.movies.data).map(JSON.stringify))).map(JSON.parse),
-        movies: state.movies.concat(action.movies.data).filter((v, i, a) => a.findIndex((t) => (t.id === v.id)) === i),
+        // movies: state.movies.concat(action.movies.data).filter((v, i, a) => a.findIndex((t) => (t.id === v.id)) === i),
+        movies: state.movies.concat(fromJS(action.movies.data).toSet()),
         offset: action.movies.offset,
         pending: false,
       };
@@ -63,7 +66,7 @@ const moviesReducer = (state = defaultState, action) => {
     case CLEAR_MOVIE:
       return {
         ...state,
-        movies: [],
+        movies: Set(),
         pending: false,
         limit: 20,
         offset: 0,
@@ -75,7 +78,7 @@ const moviesReducer = (state = defaultState, action) => {
         limit: 20,
         offset: 0,
         total: 0,
-        movies: [],
+        movies: Set(),
       };
     default: return { ...state };
   }

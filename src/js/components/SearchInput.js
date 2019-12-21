@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
 
 class SearchInput extends Component {
   constructor(props) {
@@ -18,19 +19,20 @@ class SearchInput extends Component {
       .join('&');
     return (
             <div className="container">
-                <div className="input-group mb-3">
-                    <input type="text" className="form-control" value={this.props.searchParams.search}
-                           onChange={(event) => this.onSearchTextChange(event)}
-                           placeholder="Enter movie title" aria-label="Enter movie title" name="search"/>
-                    <div className="input-group-append">
+                <InputGroup>
+                    <Input
+                        type="text"value={this.props.searchParams.search}
+                        onChange={(event) => this.onSearchTextChange(event)}
+                        placeholder="Enter movie title" aria-label="Enter movie title" name="search"
+                    />
+                    <InputGroupAddon addonType="append">
                         <Link style={{ textDecoration: 'none', color: 'black' }}
                               to={{ pathname: '/search', search: `?${queryString}` }}>
-                            <button className="btn btn-outline-secondary search-button"
-                                     type="button">SEARCH
-                            </button>
+                            <Button color="secondary" className="search-button">SEARCH
+                            </Button>
                         </Link>
-                    </div>
-                </div>
+                    </InputGroupAddon>
+                </InputGroup>
             </div>
     );
   }
