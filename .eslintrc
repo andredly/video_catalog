@@ -1,0 +1,26 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "amd": true,
+    "node": true,
+    "jest": true
+
+  },
+  "globals": {
+    "shallow": true,
+    "render": true,
+    "mount": true,
+    "renderer" : true
+  },
+  "rules": {
+    "max-len": [1, 120, 2, {"ignoreComments" :  true}],
+    "react/prop-types": "off",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+  },
+  "extends": ["airbnb-base"],
+  "plugins": ["react",
+              "import"]
+}

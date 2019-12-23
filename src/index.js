@@ -1,2 +1,1 @@
-import '@babel/polyfill'
-import Container from "./js/containers/App";
+import './js/containers/App';

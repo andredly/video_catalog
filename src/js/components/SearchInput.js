@@ -1,38 +1,41 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import {Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
 
 class SearchInput extends Component {
+  constructor(props) {
+    super(props);
+    this.onSearchTextChange = this.onSearchTextChange.bind(this);
+  }
 
-    constructor(props) {
-        super(props);
-        this.onSearchTextChange = this.onSearchTextChange.bind(this);
-    }
+  onSearchTextChange(event) {
+    this.props.setSearchText(event.target.value);
+  }
 
-    onSearchTextChange(event) {
-        this.props.setSearchText(event.target.value);
-    }
-
-    render() {
-        // this.props.searchParams.sortOrder = "desc";
-        let queryString = Object.keys(this.props.searchParams).map(key => key + '=' + encodeURIComponent(this.props.searchParams[key])).join('&');
-        return (
+  render() {
+    // this.props.searchParams.sortOrder = "desc";
+    const queryString = Object.keys(this.props.searchParams)
+      .map((key) => `${key}=${encodeURIComponent(this.props.searchParams[key])}`)
+      .join('&');
+    return (
             <div className="container">
-                <div className="input-group mb-3">
-                    <input type="text" className="form-control" value={this.props.searchParams.search}
-                           onChange={event => this.onSearchTextChange(event)}
-                           placeholder="Enter movie title" aria-label="Enter movie title" name="search"/>
-                    <div className="input-group-append">
-                        <Link style={{textDecoration: 'none', color: 'black'}} to={{ pathname : "/search", search : `?${queryString}`}}>
-                            <button className="btn btn-outline-secondary search-button"
-                                     type="button">SEARCH
-                            </button>
+                <InputGroup>
+                    <Input
+                        type="text"value={this.props.searchParams.search}
+                        onChange={(event) => this.onSearchTextChange(event)}
+                        placeholder="Enter movie title" aria-label="Enter movie title" name="search"
+                    />
+                    <InputGroupAddon addonType="append">
+                        <Link style={{ textDecoration: 'none', color: 'black' }}
+                              to={{ pathname: '/search', search: `?${queryString}` }}>
+                            <Button color="secondary" className="search-button">SEARCH
+                            </Button>
                         </Link>
-                    </div>
-                </div>
+                    </InputGroupAddon>
+                </InputGroup>
             </div>
-        )
-
-    }
+    );
+  }
 }
 
 export default SearchInput;

@@ -17,7 +17,7 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.css$/,
-        use: 'null-loader'
+        use: 'null-loader',
       },
     ],
   },

@@ -1,13 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import Logo from "./Logo";
+import Logo from './Logo';
 
-describe("Logo", () => {
-    it('renders correctly', () => {
-        const tree = renderer
-            .create(<Logo/>)
-            .toJSON();
-        expect(tree).toMatchSnapshot();
-    });
+describe('Logo', () => {
+  it('renders correctly', () => {
+    const tree = renderer
+      .create(<Logo/>)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });
-

@@ -1,13 +1,11 @@
-import React from "react";
+import React from 'react';
 
-export function Loader(props) {
-
-    if (props.load) {
-        return (
+export default function Loader(props) {
+  if (props.load) {
+    return (
             <div className="container text-center">
                 Loading...
             </div>
-        )
-    }
+    );
+  }
 }
-

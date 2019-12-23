@@ -1,14 +1,12 @@
-import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import toJson from "enzyme-to-json";
+import React from 'react';
+import toJson from 'enzyme-to-json';
+import Header from './Header';
 
 
-describe("Header", () => {
-    const wrapper = shallow(<Header/>);
+describe('Header', () => {
+  const wrapper = shallow(<Header/>);
 
-    it('renders correctly', () => {
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+  it('renders correctly', () => {
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });
-

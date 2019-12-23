@@ -1,9 +1,8 @@
-import React from "react";
-import Logo from "./Logo";
+import React from 'react';
+import Logo from './Logo';
 
 function Footer() {
-
-    return (
+  return (
         <footer>
             <div className="footer-copyright py-3 bg-secondary shadow-sm">
                 <div className="container d-flex justify-content-between">
@@ -11,7 +10,7 @@ function Footer() {
                 </div>
             </div>
         </footer>
-    )
+  );
 }
 
 export default Footer;

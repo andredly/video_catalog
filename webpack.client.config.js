@@ -1,15 +1,13 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 require('babel-polyfill');
 const path = require('path');
 
 module.exports = {
-  entry: {
-    index: ['babel-polyfill', './src/index.js'],
-  },
+  mode: 'production',
+  entry: './src/client/serverRenderer.js',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: 'bundle.js',
     publicPath: '/',
   },
   module: {
@@ -20,14 +18,6 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         },
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-          },
-        ],
       },
       {
         test: /\.css$/,
@@ -44,16 +34,13 @@ module.exports = {
       },
     ],
   },
-  devServer: {
-    historyApiFallback: true,
-  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'styles.css',
     }),
-    new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-    }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
+  devtool: 'cheap-module-source-map',
 };

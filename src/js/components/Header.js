@@ -1,10 +1,9 @@
-import React from "react";
-import Logo from "./Logo";
-import BackButton from "./BackButton";
+import React from 'react';
+import Logo from './Logo';
+import BackButton from './BackButton';
 
 function Header() {
-
-    return (
+  return (
         <header>
             <div className="navbar navbar-dark bg-secondary shadow-sm">
                 <div className="container d-flex justify-content-between">
@@ -13,7 +12,7 @@ function Header() {
                 </div>
             </div>
         </header>
-    )
+  );
 }
 
 export default Header;

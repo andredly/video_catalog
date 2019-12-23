@@ -1,23 +1,22 @@
-import FilmDetailsPage from "../pages/FilmDetailsPage";
-import HomePage from "../pages/HomePage";
-import SearchPage from "../pages/SearchPage";
-import NoFoundPage from "../pages/NoFoundPage";
+import FilmDetailsPage from '../pages/FilmDetailsPage';
+import HomePage from '../pages/HomePage';
+import SearchPage from '../pages/SearchPage';
 
 const routes = [
-    {
-        path: "/",
-        exact: true,
-        component: HomePage
-    },
-    {
-        path: "/film/:id",
-        component: FilmDetailsPage,
+  {
+    path: '/',
+    exact: true,
+    component: HomePage,
+  },
+  {
+    path: '/film/:id',
+    component: FilmDetailsPage,
 
-    },
-    {
-        path: "/search",
-        component: SearchPage,
-    }
+  },
+  {
+    path: '/search',
+    component: SearchPage,
+  },
 ];
 
 export default routes;
